@@ -4,81 +4,19 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Alert } from 'r
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
 import * as SecureStore from 'expo-secure-store';
-// import Home from './screens/Home';
-// import Visitor from './screens/Visitor';
-// import VisitorLocation from './screens/VisitorLocation';
-import Splash from './screens/Splash';
-// import SignIn from './screens/SignIn';
-import Onboarding from './screens/Onboarding';
-import Onboarding_2 from './screens/Onboarding_2';
 
-// import { State } from 'react-native-gesture-handler';
+import Splash from './screens/Splash';
+
 import { AuthContext } from './context/Contexts';
 
 import AuthStackScreen from './stacks/AuthStack';
 import SigninStackScreen from './stacks/SigninStack'
 import VisitorStackScreen from './stacks/VisitorStack'
+import OnboardingStackScreen from './stacks/OnboardingStack'
 
 const RootStack = createStackNavigator();
-// const AuthStack = createStackNavigator();
-// const SigninStack = createStackNavigator();
-// const VisitorStack = createStackNavigator();
-const OnboardingStack = createStackNavigator();
+
 // const AuthContext = createContext();
-
-const OnboardingStackScreen = () => {
-  return (
-    <OnboardingStack.Navigator>
-      <OnboardingStack.Screen
-        name="Onboarding"
-        component={Onboarding}
-      />
-      <OnboardingStack.Screen
-        name="Onboarding_2"
-        component={Onboarding_2}
-      />
-    </OnboardingStack.Navigator>
-  )
-}
-
-// const SigninStackScreen = () => {
-//   return (
-//     <SigninStack.Navigator>
-//       <SigninStack.Screen
-//         name="SignIn"
-//         component={SignIn}
-//       />
-//     </SigninStack.Navigator>
-//   )
-// }
-
-// const VisitorStackScreen = () => {
-//   return (
-//     <VisitorStack.Navigator>
-//       <VisitorStack.Screen
-//         name="Visitor"
-//         component={Visitor}
-//       />
-//       <VisitorStack.Screen
-//         name="VisitorLocation"
-//         component={VisitorLocation}
-//       />
-//     </VisitorStack.Navigator>
-//   )
-// }
-
-// const AuthStackScreen = () => {
-//   return (
-//     <AuthStack.Navigator
-//       mode="card"
-//     >
-//       <AuthStack.Screen
-//         name="Home"
-//         component={Home}
-//       />
-//     </AuthStack.Navigator>
-//   )
-// }
 
 export default function App({ navigation }) {
   const [state, dispatch] = React.useReducer(
