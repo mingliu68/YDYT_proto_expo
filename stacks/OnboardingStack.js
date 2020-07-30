@@ -13,10 +13,13 @@ const OnboardingStackScreen = () => {
             <OnboardingStack.Screen
                 name="Onboarding"
                 component={Onboarding}
+                options={{ headerShown: false }}
+
             />
             <OnboardingStack.Screen
                 name="Onboarding_2"
                 component={Onboarding_2}
+                options={{ headerShown: false }}
             />
         </OnboardingStack.Navigator>
     )

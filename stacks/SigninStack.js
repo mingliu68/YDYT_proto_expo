@@ -11,6 +11,7 @@ const SigninStackScreen = () => {
             <SigninStack.Screen
                 name="SignIn"
                 component={SignIn}
+                options={{ headerShown: false }}
             />
         </SigninStack.Navigator>
     )

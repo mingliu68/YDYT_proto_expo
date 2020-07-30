@@ -12,10 +12,12 @@ const VisitorStackScreen = () => {
             <VisitorStack.Screen
                 name="Visitor"
                 component={Visitor}
+                options={{ headerShown: false }}
             />
             <VisitorStack.Screen
                 name="VisitorLocation"
                 component={VisitorLocation}
+                options={{ headerShown: false }}
             />
         </VisitorStack.Navigator>
     )

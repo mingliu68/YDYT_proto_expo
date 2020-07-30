@@ -38,36 +38,46 @@ const Signin = ({ navigation, route }) => {
         setPassword("")
     }
 
+    const transOpacity = transition == false ? { opacity: 1 } : { opacity: 0.4 }
+
     return (
-        <SafeAreaView style={transition == false ? { opacity: 1 } : { opacity: 0.4 }}>
-            <Text>Signin</Text>
-            <TextInput
-                placeholder="username"
-                value={username}
-                onChangeText={setUsername}
-            />
-            <TextInput
-                placeholder="password"
-                value={password}
-                onChangeText={setPassword}
-            />
-            <Button
-                title="Sign in"
-                onPress={handleSignin}
-            />
-            <TouchableOpacity style={{ alignItems: "center" }}>
-                <Text style={{ color: "#999999" }}>Forgot password?</Text>
-            </TouchableOpacity>
-            <View style={styles.unauthContainer}>
-                <Button
-                    style={styles.button}
-                    title="Sign up"
-                    onPress={() => navigation.navigate("Onboarding")}
+        <SafeAreaView style={[transOpacity, { flex: 1 }]}>
+            <View style={styles.container}>
+                <TextInput
+                    style={styles.inputField}
+                    placeholder="username"
+                    value={username}
+                    onChangeText={setUsername}
+                />
+                <TextInput
+                    style={styles.inputField}
+                    placeholder="password"
+                    value={password}
+                    onChangeText={setPassword}
                 />
                 <Button
-                    title="Visitor"
-                    onPress={() => navigation.navigate("Visitor")}
+                    title="Sign in"
+                    onPress={handleSignin}
                 />
+                <TouchableOpacity style={{ alignItems: "center" }}>
+                    <Text style={{ color: "#999999" }}>Forgot password?</Text>
+                </TouchableOpacity>
+                <View style={styles.unauthContainer}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => navigation.navigate("Onboarding")}
+                        accessibilityLabel="Signing up for an account"
+                    >
+                        <Text style={styles.buttonText}>Sign up</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => navigation.navigate("Visitor")}
+                        accessibilityLabel="Use the app without signing up for an account"
+                    >
+                        <Text style={styles.buttonText}>Visitor</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     )
@@ -76,16 +86,37 @@ const Signin = ({ navigation, route }) => {
 export default Signin;
 
 const styles = StyleSheet.create({
+    container: {
+        padding: 20,
+        justifyContent: "center",
+        flex: 1
+    },
+    inputField: {
+        padding: 15,
+        backgroundColor: "white",
+        borderRadius: 10,
+        marginVertical: 5,
+        fontSize: 18
+    },
     unauthContainer: {
         flexDirection: "row",
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignContent: 'space-between',
-        paddingVertical: 20
+        paddingVertical: 20,
+        marginTop: 20
     },
     button: {
-        borderColor: "#999999",
-        borderWidth: 1,
-        borderStyle: 'solid',
-        backgroundColor: 'pink'
+        marginHorizontal: 10,
+        backgroundColor: '#888888',
+        borderRadius: 10,
+        paddingVertical: 15,
+        paddingHorizontal: 25,
+        minWidth: 150,
+        alignItems: "center"
+    },
+    buttonText: {
+        color: "white",
+        fontWeight: "bold",
+        fontSize: 18
     }
 })

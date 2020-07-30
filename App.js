@@ -93,19 +93,23 @@ export default function App({ navigation }) {
               <RootStack.Screen
                 name="Splash"
                 component={Splash}
+                options={{ headerShown: false }}
               />
               :
               state.userToken === null
                 ? <>
                   <RootStack.Screen
-                    name="Unauth"
+                    name="Signin"
                     component={SigninStackScreen}
                     options={{ headerShown: false }}
                   />
                   <RootStack.Screen
                     name="Onboarding"
                     component={OnboardingStackScreen}
-                    options={{ headerShown: false }}
+                    options={{
+                      headerShown: false,
+                      gestureEnabled: false
+                    }}
                   />
                   <RootStack.Screen
                     name="Visitor"

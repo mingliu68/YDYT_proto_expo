@@ -4,6 +4,11 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button } from '
 const Visitor = ({ route, navigation }) => {
     return (
         <SafeAreaView>
+            <TouchableOpacity
+                onPress={() => navigation.goBack()}
+            >
+                <Text>Back</Text>
+            </TouchableOpacity>
             <Text>Visitor</Text>
             <Button
                 title="Find a location"

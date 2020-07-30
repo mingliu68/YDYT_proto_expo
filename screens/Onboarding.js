@@ -4,6 +4,11 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button } from '
 const Onboarding = ({ route, navigation }) => {
     return (
         <SafeAreaView>
+            <TouchableOpacity
+                onPress={() => navigation.goBack()}
+            >
+                <Text>Back</Text>
+            </TouchableOpacity>
             <Text>Onboarding</Text>
             <Button
                 title="Next"
