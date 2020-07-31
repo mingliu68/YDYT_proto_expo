@@ -114,7 +114,10 @@ export default function App({ navigation }) {
                   <RootStack.Screen
                     name="Visitor"
                     component={VisitorStackScreen}
-                    options={{ headerShown: false }}
+                    options={{
+                      headerShown: false,
+                      cardStyle: { backgroundColor: "transparent" },
+                    }}
                   />
                 </>
                 : (
