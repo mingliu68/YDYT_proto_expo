@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, createContext } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button, TextInput, FlatList } from 'react-native';
+import * as Contacts from 'expo-contacts';
 
 const VisitorContext = React.createContext()
 
@@ -9,7 +10,24 @@ const Visitor = ({ route, navigation }) => {
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
     const [phoneWork, setPhoneWork] = useState("")
+    const [contactEmail, setContactEmail] = useState([])
 
+    useEffect(() => {
+        (async () => {
+            const { status } = await Contacts.requestPermissionsAsync();
+            if (status === 'granted') {
+                const { data } = await Contacts.getContactsAsync({
+                    fields: [Contacts.Fields.Emails]
+                });
+                if (data.length > 0) {
+                    const emailData = data.filter(item => item.emails)
+
+                    // console.log(data)
+                    setContactEmail(emailData)
+                }
+            }
+        })();
+    }, [])
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "transparent" }}>
@@ -55,11 +73,29 @@ const Visitor = ({ route, navigation }) => {
                     value={phoneWork}
                     onChangeText={setPhoneWork}
                 />
+
+                <FlatList
+                    data={contactEmail}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => (
+                        <View style={{ backgroundColor: "#ccc", padding: 10, marginBottom: 10 }}>
+                            <Text>{item.firstName} {item.lastName}</Text>
+                            {
+                                item.emails
+                                    ? item.emails.map((email) => (
+                                        <Text key={email.id}>{email.email}</Text>
+                                    ))
+                                    : null
+                            }
+                        </View>
+                    )}
+                />
+
             </View>
 
 
 
-        </SafeAreaView>
+        </SafeAreaView >
     )
 }
 
