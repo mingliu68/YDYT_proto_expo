@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useCallback, createContext } from 'react';
-import { Dimensions, StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button, TextInput, FlatList } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button, TextInput, FlatList, Alert } from 'react-native';
 import * as Contacts from 'expo-contacts';
 import { VisitorContext } from '../context/Contexts'
 import VisitorForm from '../components/VisitorForm'
+import * as MailComposer from 'expo-mail-composer';
+import PDFHelper from '../helper/PDFHelper'
+
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -15,7 +18,7 @@ const Visitor = ({ route, navigation }) => {
     const [phoneWork, setPhoneWork] = useState("")
     const [contactEmail, setContactEmail] = useState([])
     const [contactModal, setContactModal] = useState(false)
-    const [receiver, setReceiver] = useState({ name: null, email: null })
+    const [receiver, setReceiver] = useState({ name: null, email: [] })
 
     const visitorContext = {
         firstname: firstname,
@@ -45,6 +48,24 @@ const Visitor = ({ route, navigation }) => {
         })();
     }, [])
 
+    const sendEmail = useCallback(async (email, subject, body, attachment) => {
+        const isAvailable = await MailComposer.isAvailableAsync();
+        if (!isAvailable) {
+            Alert.alert('Email Error', 'Email is not available\nMake sure your email client is setup.', [{ text: 'OK', style: 'cancel' }])
+        } else {
+            attachment = await PDFHelper.CreatePDF(attachment);
+            console.log(email, subject, body, attachment)
+            const status = await MailComposer.composeAsync({
+                recipients: [email],
+                subject, subject,
+                body: body,
+                attachments: [attachment.uri]
+            })
+
+            console.log(status)
+        }
+    })
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "transparent" }}>
             <View style={styles.container}>
@@ -62,11 +83,22 @@ const Visitor = ({ route, navigation }) => {
                     <VisitorForm />
                 </VisitorContext.Provider>
                 <Text>Send this form to {receiver.name} at {receiver.email}</Text>
+
                 <TouchableOpacity
                     onPress={() => setContactModal(true)}
                 >
                     <Text>Get Contacts</Text>
                 </TouchableOpacity>
+                {
+                    receiver.email.length > 0
+                        ? <TouchableOpacity
+                            onPress={() => sendEmail(receiver.email, "test subject", 'test body', '<div> Just a test</div>')}
+                        >
+                            <Text>Send Form</Text>
+                        </TouchableOpacity>
+                        : null
+                }
+
             </View>
             <View style={[
                 styles.contactModal,
@@ -101,6 +133,7 @@ const Visitor = ({ route, navigation }) => {
                 >
                     <Text>Back</Text>
                 </TouchableOpacity>
+
             </View>
         </SafeAreaView >
     )
