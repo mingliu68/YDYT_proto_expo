@@ -5,7 +5,7 @@ export default class PDFHelper {
 
     static async CreatePDF(html) {
         const response = await Print.printToFileAsync({ 'html': html });
-        console.log(response);
+        // console.log(response);
         return response;
     }
 }
