@@ -4,14 +4,14 @@ import styled from "styled-components";
 
 const screenHeight = Dimensions.get("window").height
 
-const Card = (props) => {
+const CardNoCover = (props) => {
     return (
         <Container
             accessible={true}
             accessibilityLabel={props.title}
         >
             <Cover>
-                <Image source={{ uri: props.img }} />
+                {/* <Image source={{ uri: props.img }} /> */}
                 <Title>{props.title}</Title>
             </Cover>
             <Content>
@@ -24,7 +24,7 @@ const Card = (props) => {
     )
 }
 
-export default Card;
+export default CardNoCover;
 
 const Container = styled.View`
     width: 315px;
@@ -39,10 +39,11 @@ const Container = styled.View`
 
 const Cover = styled.View`
     width: 100%;
-    height: 200px;
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
+    padding: 20px;
     overflow: hidden;
+    background-color: blue
 `;
 
 const Image = styled.Image`
@@ -57,8 +58,7 @@ const Title = styled.Text`
     color: white;
     font-size: 24px;
     font-weight: bold;
-    margin-left: 20px;
-    margin-top: 20px;
+   
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.85);
 `;
 

@@ -4,15 +4,19 @@ import MapView from 'react-native-maps';
 import { AntDesign } from "@expo/vector-icons";
 import { StatusBar } from 'expo-status-bar';
 import Card from "../components/Card";
+import CardNoCover from "../components/CardNoCover"
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
 const VisitorNew = ({ route, navigation }) => {
     return (
-        <View style={styles.container}>
+        <View style={styles.container} >
             <StatusBar style="dark" />
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ flexGrow: 1, }}
+            >
 
                 <View style={styles.topContainer}>
                     <MapView style={styles.mapStyle} />
@@ -98,7 +102,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        zIndex: 100,
+        zIndex: 5,
         height: 50
     },
     headerIcon: {
@@ -161,13 +165,11 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     bottomContainer: {
-        marginBottom: 30,
-        position: "absolute",
-        top: screenHeight * 0.5,
+        // marginBottom: 30,
+        // position: "absolute",
+        marginTop: screenHeight * 0.5 - 95,
         paddingTop: 60,
         paddingBottom: 30,
         flex: 1,
-        borderWidth: 1,
-        borderColor: "red"
     },
 })
