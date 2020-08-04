@@ -1,7 +1,10 @@
 import React from 'react';
 import { createStackNavigator, TransitionSpecs } from '@react-navigation/stack';
+import VisitorNew from '../screens/VisitorNew';
+import VisitorLocationNew from '../screens/VisitorLocationNew';
 import Visitor from '../screens/Visitor'
 import VisitorLocation from '../screens/VisitorLocation';
+
 
 
 const VisitorStack = createStackNavigator();
@@ -51,6 +54,21 @@ const CardOptions = {
 const VisitorStackScreen = () => {
     return (
         <VisitorStack.Navigator>
+            <VisitorStack.Screen
+                name="VisitorNew"
+                component={VisitorNew}
+                options={{
+                    headerShown: false,
+
+                }}
+            />
+            <VisitorStack.Screen
+                name="VisitorLocationNew"
+                component={VisitorLocationNew}
+                options={{
+                    headerShown: false,
+                }}
+            />
             <VisitorStack.Screen
                 name="Visitor"
                 component={Visitor}

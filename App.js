@@ -117,6 +117,8 @@ export default function App({ navigation }) {
                     options={{
                       headerShown: false,
                       cardStyle: { backgroundColor: "transparent" },
+                      gestureEnabled: false
+
                     }}
                   />
                 </>
