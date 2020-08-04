@@ -28,18 +28,16 @@ export default Card;
 
 const Container = styled.View`
     width: 315px;
-    height: ${screenHeight * 0.5 - 120}px;
+    height: 340px;
     border-radius: 14px;
     background: white;
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 10px 10px 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 `;
 
 const Cover = styled.View`
     width: 100%;
-    height: 200px;
+    height: 160px;
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
     overflow: hidden;
@@ -65,7 +63,7 @@ const Title = styled.Text`
 const Content = styled.View`
     padding: 10px 20px;
     align-items: flex-start;
-    height: 80px;
+    height: 180px;
 `;
 
 const Caption = styled.Text`

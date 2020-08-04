@@ -13,11 +13,22 @@ const VisitorNew = ({ route, navigation }) => {
     return (
         <View style={styles.container} >
             <StatusBar style="dark" />
+            <View style={styles.headerContainer}>
+                <TouchableOpacity
+                    accessible={true}
+                    accessibilityLabel="Go back"
+                    accessibilityRole="button"
+                    style={styles.headerIcon}
+                    onPress={() => navigation.goBack()}
+                >
+                    <AntDesign name="close" size={36} color="black" />
+                </TouchableOpacity>
+            </View>
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ flexGrow: 1, }}
+                style={{ marginTop: -95 }}
             >
-
                 <View style={styles.topContainer}>
                     <MapView style={styles.mapStyle} />
                     <View style={styles.searchContainer}>
@@ -32,21 +43,16 @@ const VisitorNew = ({ route, navigation }) => {
                         </View>
                     </View>
                 </View>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        accessible={true}
-                        accessibilityLabel="Go back"
-                        accessibilityRole="button"
-                        style={styles.headerIcon}
-                        onPress={() => navigation.goBack()}
-                    >
-                        <AntDesign name="close" size={36} color="black" />
-                    </TouchableOpacity>
-                </View>
+
                 <View style={styles.bottomContainer}>
                     <Text style={styles.cardContainerTitle}>Fill and Send a Form</Text>
 
-                    <ScrollView horizontal={true} style={{ paddingLeft: 20 }}>
+                    <ScrollView
+                        // contentContainerStyle={{ paddingRight: 20 }}
+                        showsHorizontalScrollIndicator={false}
+                        horizontal={true}
+                    // style={{ paddingLeft: 0 }}
+                    >
 
                         <View style={{ flexDirection: "row" }}>
                             <Card
@@ -65,25 +71,7 @@ const VisitorNew = ({ route, navigation }) => {
                         <View style={styles.card} /> */}
                         </View>
                     </ScrollView>
-                    <ScrollView horizontal={true} style={{ paddingLeft: 20 }}>
 
-                        <View style={{ flexDirection: "row" }}>
-                            <Card
-                                title="Communication Plan"
-                                img='https://us.123rf.com/450wm/microone/microone1902/microone190200584/124965659-isometric-business-meeting-or-conference-with-info-desk-vector-illustration-conference-isometric-man.jpg?ver=6'
-                                caption="A form for all members of an IRT"
-                                subtitle="Includes contact information and create a plan for how everyone will stay updated on the job seeker's progress"
-                            />
-                            <Card
-                                title="Action Plan"
-                                img='https://us.123rf.com/450wm/microone/microone1902/microone190200584/124965659-isometric-business-meeting-or-conference-with-info-desk-vector-illustration-conference-isometric-man.jpg?ver=6'
-                                caption="Keep track of what is agreed upon at a meeting"
-                                subtitle="It outlines who will be completing different tasks and a timeline"
-                            />
-                            {/* <View style={styles.card} />
-                        <View style={styles.card} /> */}
-                        </View>
-                    </ScrollView>
                 </View>
             </ScrollView>
         </View>
@@ -103,7 +91,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         zIndex: 5,
-        height: 50
+        height: 50,
+        backgroundColor: "transparent"
     },
     headerIcon: {
         position: "absolute",
@@ -159,15 +148,15 @@ const styles = StyleSheet.create({
         height: "100%"
     },
     cardContainerTitle: {
-        paddingHorizontal: 30,
-        fontSize: 14,
+        paddingHorizontal: 20,
+        fontSize: 18,
         fontWeight: "bold",
-        marginBottom: 10
+        marginBottom: 0
     },
     bottomContainer: {
         // marginBottom: 30,
         // position: "absolute",
-        marginTop: screenHeight * 0.5 - 95,
+        marginTop: screenHeight * 0.5,
         paddingTop: 60,
         paddingBottom: 30,
         flex: 1,
