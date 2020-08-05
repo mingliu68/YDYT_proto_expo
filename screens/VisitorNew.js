@@ -4,7 +4,8 @@ import MapView from 'react-native-maps';
 import { AntDesign } from "@expo/vector-icons";
 import { StatusBar } from 'expo-status-bar';
 import Card from "../components/Card";
-import CardNoCover from "../components/CardNoCover"
+import CardNoCover from "../components/CardNoCover";
+import CloseButton from '../components/CloseButton';
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
@@ -13,21 +14,11 @@ const VisitorNew = ({ route, navigation }) => {
     return (
         <View style={styles.container} >
             <StatusBar style="dark" />
-            <View style={styles.headerContainer}>
-                <TouchableOpacity
-                    accessible={true}
-                    accessibilityLabel="Go back"
-                    accessibilityRole="button"
-                    style={styles.headerIcon}
-                    onPress={() => navigation.goBack()}
-                >
-                    <AntDesign name="close" size={36} color="black" />
-                </TouchableOpacity>
-            </View>
+
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ flexGrow: 1, }}
-                style={{ marginTop: -95 }}
+            // style={{ marginTop: -95 }}
             >
                 <View style={styles.topContainer}>
                     <MapView style={styles.mapStyle} />
@@ -36,11 +27,15 @@ const VisitorNew = ({ route, navigation }) => {
                             style={styles.searchInput}
                             placeholder="Find a location"
                         />
-                        <View
+                        <TouchableOpacity
                             style={styles.searchIcon}
+                            accessible={true}
+                            accessibilityLabel="Search"
+                            accessibilityRole="button"
+                            onPress={() => { }}
                         >
-                            <AntDesign name="search1" size={30} color="black" style={{ marginTop: 5 }} />
-                        </View>
+                            <AntDesign name="search1" size={30} color="black" style={{ marginTop: 5 }} accessibilityLabel="Search" />
+                        </TouchableOpacity>
                     </View>
                 </View>
 
@@ -55,25 +50,39 @@ const VisitorNew = ({ route, navigation }) => {
                     >
 
                         <View style={{ flexDirection: "row" }}>
-                            <Card
-                                title="Communication Plan"
-                                img='https://us.123rf.com/450wm/microone/microone1902/microone190200584/124965659-isometric-business-meeting-or-conference-with-info-desk-vector-illustration-conference-isometric-man.jpg?ver=6'
-                                caption="A form for all members of an IRT"
-                                subtitle="Includes contact information and create a plan for how everyone will stay updated on the job seeker's progress"
-                            />
-                            <Card
-                                title="Action Plan"
-                                img='https://us.123rf.com/450wm/microone/microone1902/microone190200584/124965659-isometric-business-meeting-or-conference-with-info-desk-vector-illustration-conference-isometric-man.jpg?ver=6'
-                                caption="Keep track of what is agreed upon at a meeting"
-                                subtitle="It outlines who will be completing different tasks and a timeline"
-                            />
-                            {/* <View style={styles.card} />
-                        <View style={styles.card} /> */}
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('VisitorForm', { title: "Communication Plan" })}
+                                accessible={true}
+                                accessibilityLabel="Communication Plan"
+                            >
+                                <Card
+                                    title="Communication Plan"
+                                    img='https://us.123rf.com/450wm/microone/microone1902/microone190200584/124965659-isometric-business-meeting-or-conference-with-info-desk-vector-illustration-conference-isometric-man.jpg?ver=6'
+                                    caption="A form for all members of an IRT"
+                                    subtitle="Includes contact information and create a plan for how everyone will stay updated on the job seeker's progress"
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('VisitorForm', { title: "Action Plan" })}
+                                accessible={true}
+                                accessibilityLabel="Action Plan"
+                            >
+                                <Card
+                                    title="Action Plan"
+                                    img='https://us.123rf.com/450wm/microone/microone1902/microone190200584/124965659-isometric-business-meeting-or-conference-with-info-desk-vector-illustration-conference-isometric-man.jpg?ver=6'
+                                    caption="Keep track of what is agreed upon at a meeting"
+                                    subtitle="It outlines who will be completing different tasks and a timeline"
+                                />
+                            </TouchableOpacity>
+
                         </View>
                     </ScrollView>
 
                 </View>
             </ScrollView>
+            <View style={{ position: 'absolute' }}>
+                <CloseButton goBack={() => navigation.goBack()} />
+            </View>
         </View>
     )
 }
@@ -84,31 +93,36 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    headerContainer: {
-        marginTop: 45,
-        paddingHorizontal: 20,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 5,
-        height: 50,
-        backgroundColor: "transparent"
-    },
-    headerIcon: {
-        position: "absolute",
-        left: 20,
-        width: 50,
-        height: 50
-    },
-    headerTitle: {
-        alignItems: "center",
-        justifyContent: "center",
-    },
+    // headerContainer: {
+    //     position: "absolute",
+    //     top: 45,
+    //     paddingHorizontal: 20,
+    //     flexDirection: "row",
+    //     alignItems: "center",
+    //     justifyContent: "center",
+    //     zIndex: 5,
+    //     height: 50,
+    //     backgroundColor: "transparent"
+    // },
+    // headerIcon: {
+    //     position: "absolute",
+    //     alignItems: "center",
+    //     justifyContent: "center",
+    //     top: 45,
+    //     left: 20,
+    //     width: 50,
+    //     height: 50,
+    //     zIndex: 5,
+    // },
+    // headerTitle: {
+    //     alignItems: "center",
+    //     justifyContent: "center",
+    // },
     topContainer: {
         backgroundColor: "salmon",
         position: "absolute",
         top: 0,
-        height: screenHeight * 0.5,
+        height: screenHeight * 0.45,
         width: "100%",
         justifyContent: "center",
         alignItems: "center",
@@ -156,7 +170,7 @@ const styles = StyleSheet.create({
     bottomContainer: {
         // marginBottom: 30,
         // position: "absolute",
-        marginTop: screenHeight * 0.5,
+        marginTop: screenHeight * 0.45,
         paddingTop: 60,
         paddingBottom: 30,
         flex: 1,

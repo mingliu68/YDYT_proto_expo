@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { Dimensions, StyleSheet, Text, View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
 import { VisitorContext } from '../context/Contexts'
 
-const VisitorForm = (props) => {
+const VisitorCommunicationForm = (props) => {
     const {
         firstname,
         setFirstname,
@@ -52,7 +52,7 @@ const VisitorForm = (props) => {
     )
 }
 
-export default VisitorForm;
+export default VisitorCommunicationForm;
 
 const styles = StyleSheet.create({
     inputField: {

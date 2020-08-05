@@ -4,7 +4,7 @@ import VisitorNew from '../screens/VisitorNew';
 import VisitorLocationNew from '../screens/VisitorLocationNew';
 import Visitor from '../screens/Visitor'
 import VisitorLocation from '../screens/VisitorLocation';
-
+import VisitorForm from '../screens/VisitorForm';
 
 
 const VisitorStack = createStackNavigator();
@@ -65,6 +65,13 @@ const VisitorStackScreen = () => {
             <VisitorStack.Screen
                 name="VisitorLocationNew"
                 component={VisitorLocationNew}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <VisitorStack.Screen
+                name="VisitorForm"
+                component={VisitorForm}
                 options={{
                     headerShown: false,
                 }}

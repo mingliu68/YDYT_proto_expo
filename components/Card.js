@@ -33,6 +33,7 @@ const Container = styled.View`
     background: white;
     margin: 10px 10px 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
 `;
 
 const Cover = styled.View`
@@ -49,6 +50,7 @@ const Image = styled.Image`
     position: absolute;
     top: 0;
     right: 0;
+    overflow: hidden;
 `;
 
 const Title = styled.Text`

@@ -11,7 +11,6 @@ const CardNoCover = (props) => {
             accessibilityLabel={props.title}
         >
             <Cover>
-                {/* <Image source={{ uri: props.img }} /> */}
                 <Title>{props.title}</Title>
             </Cover>
             <Content>

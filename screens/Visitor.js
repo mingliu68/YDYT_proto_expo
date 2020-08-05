@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback, createContext } from 'react';
 import { Platform, Dimensions, StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Button, TextInput, FlatList, Alert } from 'react-native';
 import * as Contacts from 'expo-contacts';
 import { VisitorContext } from '../context/Contexts'
-import VisitorForm from '../components/VisitorForm'
+import VisitorCommunicationForm from '../components/VisitorCommunicationForm'
 import * as MailComposer from 'expo-mail-composer';
 import PDFHelper from '../helper/PDFHelper';
-import VisitorForms from '../forms/VisitorForms'
+import VisitorFormHTML from '../forms/VisitorFormHTML'
 
 
 const screenWidth = Dimensions.get("window").width;
@@ -61,7 +61,7 @@ const Visitor = ({ route, navigation }) => {
         if (!isAvailable) {
             Alert.alert('Email Error', 'Email is not available\nMake sure your email client is setup.', [{ text: 'OK', style: 'cancel' }])
         } else {
-            const pdfHTML = await VisitorForms.communicationPlan(attachment)
+            const pdfHTML = await VisitorFormHTML.communicationPlan(attachment)
             const pdfForm = await PDFHelper.CreatePDF(pdfHTML);
             console.log(email, subject, body, pdfForm)
             const status = await MailComposer.composeAsync({
@@ -93,7 +93,7 @@ const Visitor = ({ route, navigation }) => {
                     onPress={() => navigation.navigate("VisitorLocation")}
                 />
                 <VisitorContext.Provider value={visitorContext}>
-                    <VisitorForm />
+                    <VisitorCommunicationForm />
                 </VisitorContext.Provider>
                 {
                     receiver.email.length > 0
