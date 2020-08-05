@@ -1,35 +1,53 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet, TextInput, KeyboardAvoidingView } from "react-native";
+import React, { useState, useEffect, useCallback, useContext } from 'react';
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
+import { VisitorComPlanContext } from "../../context/Contexts"
 
 const CommunicationPlan = (props) => {
-    const [firstname, setFirstname] = useState('')
-    const [lastname, setLastname] = useState('')
-    const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [workPhone, setWorkPhone] = useState('')
-    // array of objects of members (name, role, phone, email)
-    const [members, setMembers] = useState([])
-    const [comChannel, setComChannel] = useState(null)
-    const [comTime, setComTime] = useState(null)
-    const [comFrequency, setComFrequency] = useState(null)
-    // array of next check in dates
-    const [nextCheckInDate, setNextCheckInDate] = useState([])
+
+    const {
+        firstname,
+        setFirstname,
+        lastname,
+        setLastname,
+        email,
+        setEmail,
+        phone,
+        setPhone,
+        workPhone,
+        setWorkPhone,
+        members,
+        setMembers,
+        comChannel,
+        setComChannel,
+        comTime,
+        setComTime,
+        comFrequency,
+        setComFrequency,
+        nextCheckInDate,
+        setNextCheckInDate
+    } = useContext(VisitorComPlanContext);
 
     return (
-        <View>
-            <Text>Communication Plan</Text>
-            <TextInput
-                style={styles.inputField}
-                placeholder="firstname"
-                value={firstname}
-                onChangeText={setFirstname}
-            />
-            <TextInput
-                style={styles.inputField}
-                placeholder="lastname"
-                value={lastname}
-                onChangeText={setLastname}
-            />
+        <ScrollView>
+            {/* <Text>Communication Plan</Text> */}
+            <View
+                style={{ flexDirection: "row", alignItems: 'center', justifyContent: 'space-between' }}
+            >
+                <TextInput
+                    style={[styles.inputField, { width: "48%" }]}
+                    placeholder="firstname"
+                    value={firstname}
+                    onChangeText={setFirstname}
+
+                />
+                <TextInput
+                    style={[styles.inputField, { width: "48%" }]}
+                    placeholder="lastname"
+                    value={lastname}
+                    onChangeText={setLastname}
+                />
+            </View>
+
             <TextInput
                 style={styles.inputField}
                 placeholder="email"
@@ -48,7 +66,7 @@ const CommunicationPlan = (props) => {
                 value={workPhone}
                 onChangeText={setWorkPhone}
             />
-        </View>
+        </ScrollView>
     )
 }
 
@@ -57,7 +75,7 @@ export default CommunicationPlan;
 const styles = StyleSheet.create({
     inputField: {
         padding: 15,
-        backgroundColor: "white",
+        backgroundColor: "#eeeeee",
         borderRadius: 10,
         marginVertical: 5,
         fontSize: 18

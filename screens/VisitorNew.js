@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet, TextInput, Dimensions } from "react-native";
 import MapView from 'react-native-maps';
 import { AntDesign } from "@expo/vector-icons";
@@ -11,6 +11,12 @@ const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
 const VisitorNew = ({ route, navigation }) => {
+    console.log(route.params)
+    const visitorData = route.params
+        ? route.params
+        : undefined
+
+
     return (
         <View style={styles.container} >
             <StatusBar style="dark" />
@@ -51,7 +57,7 @@ const VisitorNew = ({ route, navigation }) => {
 
                         <View style={{ flexDirection: "row" }}>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate('VisitorForm', { title: "Communication Plan" })}
+                                onPress={() => navigation.navigate('VisitorForm', { title: "Communication Plan", visitorData: visitorData })}
                                 accessible={true}
                                 accessibilityLabel="Communication Plan"
                             >

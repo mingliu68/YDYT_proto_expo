@@ -11,7 +11,7 @@ const BackButton = (props) => {
             style={styles.headerIcon}
             onPress={props.goBack}
         >
-            <AntDesign name="arrowleft" size={36} color="black" />
+            <AntDesign name="arrowleft" size={36} color={props.color} />
         </TouchableOpacity>
     )
 
