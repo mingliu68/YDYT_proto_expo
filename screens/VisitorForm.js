@@ -14,10 +14,6 @@ const screenHeight = Dimensions.get("window").height;
 const VisitorForm = ({ route, navigation }) => {
     let { title, visitorData } = route.params
 
-    // let visitorData = route.params.visitorData
-    //     ? route.params.visitorData
-    //     : undefined
-
     console.log(visitorData)
     const [firstname, setFirstname] = useState(visitorData ? visitorData.firstname : "")
     const [lastname, setLastname] = useState(visitorData ? visitorData.lastname : "")

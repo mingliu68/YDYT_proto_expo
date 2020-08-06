@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import Card from "../components/Card";
 import CardNoCover from "../components/CardNoCover";
 import CloseButton from '../components/CloseButton';
+import { locations } from '../server_dummy/data';
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
@@ -27,7 +28,15 @@ const VisitorNew = ({ route, navigation }) => {
             // style={{ marginTop: -95 }}
             >
                 <View style={styles.topContainer}>
-                    <MapView style={styles.mapStyle} />
+                    <MapView
+                        style={styles.mapStyle}
+                        initialRegion={{
+                            latitude: 42.459042,
+                            longitude: -76.472015,
+                            latitudeDelta: 0.8,
+                            longitudeDelta: 0.8,
+                        }}
+                    />
                     <View style={styles.searchContainer}>
                         <TextInput
                             style={styles.searchInput}
@@ -38,9 +47,9 @@ const VisitorNew = ({ route, navigation }) => {
                             accessible={true}
                             accessibilityLabel="Search"
                             accessibilityRole="button"
-                            onPress={() => { }}
+                            onPress={() => navigation.navigate("VisitorLocationNew")}
                         >
-                            <AntDesign name="search1" size={30} color="black" style={{ marginTop: 5 }} accessibilityLabel="Search" />
+                            <AntDesign name="search1" size={30} color="black" accessibilityLabel="Search" />
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -86,8 +95,8 @@ const VisitorNew = ({ route, navigation }) => {
 
                 </View>
             </ScrollView>
-            <View style={{ position: 'absolute' }}>
-                <CloseButton goBack={() => navigation.goBack()} />
+            <View style={{ position: 'absolute', zIndex: 5 }} accessible={true} accessibilityLabel="Close">
+                <CloseButton goBack={() => navigation.goBack()} color={"black"} />
             </View>
         </View>
     )
@@ -153,10 +162,10 @@ const styles = StyleSheet.create({
     searchInput: {
         width: "80%",
         height: "100%",
-        fontSize: 14
+        fontSize: 18
     },
     searchIcon: {
-        height: "100%",
+        padding: 15,
         width: "20%",
         borderLeftColor: "#ccc",
         borderLeftWidth: 1,

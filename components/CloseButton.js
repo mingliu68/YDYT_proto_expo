@@ -6,12 +6,14 @@ const CloseButton = (props) => {
     return (
         <TouchableOpacity
             accessible={true}
-            accessibilityLabel="Go back"
+            accessibilityLabel="Close"
             accessibilityRole="button"
             style={styles.headerIcon}
             onPress={props.goBack}
         >
-            <AntDesign name="close" size={36} color="black" />
+            <AntDesign name="close" size={36} color={props.color} accessible={true}
+                accessibilityLabel="Close"
+                accessibilityRole="button" />
         </TouchableOpacity>
     )
 

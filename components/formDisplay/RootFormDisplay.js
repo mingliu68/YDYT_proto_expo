@@ -18,7 +18,7 @@ const RootFormDisplay = (props) => {
     } = useContext(VisitorComPlanContext);
 
     return (
-        <ScrollView horizontal={true} style={styles.container}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.container}>
             <View
                 style={{ flexDirection: "row", flexWrap: "wrap", borderWidth: 0.5, borderColor: "#999999", width: 1000 }}
             >
